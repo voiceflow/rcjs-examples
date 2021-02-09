@@ -20,7 +20,9 @@ const app = new RuntimeClient({
 ```
 
 ### Global Trace Processor
-To create the `globalTraceProcessor`, we invoke the `makeTraceProcessor` utility and pass in a handler map. This is an object whose keys are the names of trace types and whose values are handlers for that trace type. The utility will return a function which will accept a `GeneralTrace`, determine which type of trace it is, and then invoke the handler you defined for that type. For a complete description of all of the trace types and handler signatures, see the API reference.
+To create the `globalTraceProcessor`, we invoke the `makeTraceProcessor` utility and pass in a handler map. The hadler map is an object whose keys are the names of trace types and whose values are handlers for that trace type. 
+
+The utility will return a function that accept a `GeneralTrace`, determine the trace type, and then invoke the handler you defined for that type. For a complete description of all of the trace types and handler signatures, see the API reference.
 
 **Note:** If `globalTraceProcessor` receives a trace type that wasn't given an explicit handler, then the `globalTraceProcessor` throws an exception. Make sure the trace that you pass into `globalTraceProcessor` is of a trace type that you expect.
 
