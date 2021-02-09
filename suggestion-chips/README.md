@@ -1,6 +1,6 @@
 # Suggestion Chips Sample
 
-This sample demonstrates the Suggestion CHips functionality that is available on the Runtime Client. 
+This sample demonstrates the Suggestion Chips functionality that is available on the Runtime Client. 
 
 To start the project, use `yarn start`
 
