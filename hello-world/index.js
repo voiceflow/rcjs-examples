@@ -1,11 +1,10 @@
 const RuntimeClient = require("@voiceflow/runtime-client-js").default;
+const config = require("./config.json");
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // $TODO - Remove this
 
 // Construct a new Voiceflow app instance
-const app = new RuntimeClient({
-    versionID: 'XXXXXXXXXXXXXXXXXXXXXXXXX'
-});
+const app = new RuntimeClient(config);
 
 (async () => {
     // Start the conversation session and get the initial app response

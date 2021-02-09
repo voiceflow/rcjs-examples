@@ -1,5 +1,6 @@
 const RuntimeClient = require("@voiceflow/runtime-client-js").default;
 const { makeTraceProcessor } = require("@voiceflow/runtime-client-js");
+const config = require("./config.json")
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // $TODO - Remove this
 
@@ -27,7 +28,7 @@ const localTraceProcessor = makeTraceProcessor({
 
 // Construct a new Voiceflow app instance
 const app = new RuntimeClient({
-    versionID: 'XXXXXXXXXXXXXXXXXXXXXXXXX',
+    ...config,
     dataConfig: {
         includeTypes: ['speak', 'debug', 'block', 'flow'],
         traceProcessor: globalTraceProcessor
