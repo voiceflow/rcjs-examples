@@ -1,0 +1,251 @@
+{
+  "project": {
+    "_id": "6022c4ece5ff350ace3acd74",
+    "name": "Hello World",
+    "teamID": "M9YnzxkbKg",
+    "devVersion": "6022c4ec1d44ca0aca82d1d4",
+    "platform": "general",
+    "platformData": {
+      "invocationName": "template project general"
+    },
+    "members": [],
+    "image": "",
+    "creatorID": 3,
+    "prototype": {
+      "nlp": {
+        "type": "LUIS",
+        "appID": "14a00a60-82d5-4dac-8166-df8e33aacc63"
+      },
+      "data": {},
+      "trainedModel": {
+        "intents": [
+          {
+            "key": "VF.NEXT",
+            "name": "VF.NEXT",
+            "inputs": [
+              {
+                "text": "next"
+              }
+            ]
+          }
+        ],
+        "slots": []
+      },
+      "lastTrainedTime": 1612891487577
+    }
+  },
+  "version": {
+    "_id": "6022c4ec1d44ca0aca82d1d4",
+    "name": "Initial Version",
+    "projectID": "6022c4ece5ff350ace3acd74",
+    "variables": [
+      "sessions",
+      "user_id",
+      "timestamp",
+      "platform",
+      "locale"
+    ],
+    "platformData": {
+      "slots": [],
+      "intents": [],
+      "settings": {
+        "restart": true,
+        "repeat": 100,
+        "locales": [
+          "en-US"
+        ]
+      },
+      "publishing": {},
+      "platform": "general"
+    },
+    "rootDiagramID": "6022c4ec1d44ca0aca82d1d5",
+    "creatorID": 3,
+    "prototype": {
+      "data": {
+        "name": "Hello World",
+        "locales": [
+          "en-US"
+        ]
+      },
+      "model": {
+        "intents": [
+          {
+            "key": "VF.NEXT",
+            "name": "VF.NEXT",
+            "inputs": [
+              {
+                "text": "next"
+              }
+            ]
+          }
+        ],
+        "slots": []
+      },
+      "context": {
+        "stack": [
+          {
+            "storage": {},
+            "variables": {},
+            "programID": "6022c4ec1d44ca0aca82d1d5"
+          }
+        ]
+      },
+      "settings": {}
+    }
+  },
+  "diagrams": {
+    "6022c4ec1d44ca0aca82d1d5": {
+      "_id": "6022c4ec1d44ca0aca82d1d5",
+      "offsetX": 49.80000000000001,
+      "offsetY": 185.60000000000002,
+      "zoom": 80,
+      "nodes": {
+        "start00000000000000000000": {
+          "nodeID": "start00000000000000000000",
+          "type": "start",
+          "coords": [
+            360,
+            120
+          ],
+          "data": {
+            "name": "Start",
+            "color": "standard",
+            "ports": [
+              {
+                "type": "",
+                "target": "6022c4feb2fe82fa1971b8b4",
+                "id": "6022c4fcb2fe82fa1971b8b1"
+              }
+            ],
+            "steps": []
+          }
+        },
+        "6022c4feb2fe82fa1971b8b4": {
+          "nodeID": "6022c4feb2fe82fa1971b8b4",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "Hello, world!"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6022c508b2fe82fa1971b8c0",
+                "id": "6022c4feb2fe82fa1971b8b6"
+              }
+            ]
+          }
+        },
+        "6022c4feb2fe82fa1971b8b7": {
+          "nodeID": "6022c4feb2fe82fa1971b8b7",
+          "type": "block",
+          "coords": [
+            826.5,
+            114.24999999999997
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "6022c4feb2fe82fa1971b8b4",
+              "6022c508b2fe82fa1971b8c0"
+            ]
+          }
+        },
+        "6022c508b2fe82fa1971b8c0": {
+          "nodeID": "6022c508b2fe82fa1971b8c0",
+          "type": "prompt",
+          "data": {
+            "ports": [],
+            "reprompt": null,
+            "noMatches": {
+              "randomize": false,
+              "reprompts": [
+                {
+                  "voice": "default",
+                  "content": ""
+                }
+              ]
+            },
+            "chips": null
+          }
+        },
+        "6022c509b2fe82fa1971b8c5": {
+          "nodeID": "6022c509b2fe82fa1971b8c5",
+          "type": "intent",
+          "data": {
+            "intent": "VF.NEXT",
+            "mappings": [],
+            "ports": [
+              {
+                "type": "",
+                "target": "6022c517b2fe82fa1971b8cd",
+                "id": "6022c509b2fe82fa1971b8c6"
+              }
+            ]
+          }
+        },
+        "6022c509b2fe82fa1971b8c7": {
+          "nodeID": "6022c509b2fe82fa1971b8c7",
+          "type": "block",
+          "coords": [
+            819,
+            345.49999999999994
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "6022c509b2fe82fa1971b8c5"
+            ]
+          }
+        },
+        "6022c517b2fe82fa1971b8cd": {
+          "nodeID": "6022c517b2fe82fa1971b8cd",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "Nobody expects the Spanish Inquisition"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": null,
+                "id": "6022c517b2fe82fa1971b8cf"
+              }
+            ]
+          }
+        },
+        "6022c517b2fe82fa1971b8d0": {
+          "nodeID": "6022c517b2fe82fa1971b8d0",
+          "type": "block",
+          "coords": [
+            1334,
+            347.99999999999994
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "6022c517b2fe82fa1971b8cd"
+            ]
+          }
+        }
+      },
+      "variables": [],
+      "children": [],
+      "name": "ROOT",
+      "versionID": "6022c4ec1d44ca0aca82d1d4",
+      "creatorID": 3,
+      "modified": 1612891480
+    }
+  }
+}
