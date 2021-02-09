@@ -1,6 +1,5 @@
 import React from 'react';
 import RuntimeClient from "@voiceflow/runtime-client-js";
-import './App.css';
 
 function App() {
   const chatbot = React.useMemo(() => new RuntimeClient({
