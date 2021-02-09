@@ -1,23 +1,64 @@
-import logo from './logo.svg';
+import React from 'react';
+import RuntimeClient from "@voiceflow/runtime-client-js";
 import './App.css';
 
 function App() {
+  const chatbot = React.useMemo(() => new RuntimeClient({
+    versionID: 'XXXXXXXXXXXXXXXXXXXXXX'
+  }), []);
+
+  const [isConvoOver, setConvoOver] = React.useState(true);
+  const [traces, setTraces] = React.useState([]);
+  const [chips, setChips] = React.useState([]);
+  const inputRef = React.useRef(null);
+
+  const setContext = React.useCallback((context) => {
+    setTraces(context.getResponse());
+    setConvoOver(context.isEnding());
+    setChips(context.getChips());
+  }, []);
+
+  const clearUI = React.useCallback(() => {
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+  }, [inputRef]);
+
+  const onInteract = React.useCallback(async () => {
+    const context = isConvoOver 
+      ? await chatbot.start()
+      : await chatbot.sendText(inputRef.current.value ?? '');
+    
+    setContext(context);
+    clearUI();
+  }, [chatbot, inputRef, isConvoOver, setContext, clearUI]);
+
+  const createChipsCallback = React.useCallback((suggestion) => {
+    return async () => {
+      const context = await chatbot.sendText(suggestion);
+      setContext(context);
+      clearUI();
+    };
+  }, [clearUI, chatbot, setContext])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <label>Input:</label><input type="text" ref={inputRef}></input>
+      <button onClick={onInteract}>{ isConvoOver ? 'Start' : 'Send' }</button>
+      <h2>Dialogue</h2>
+      <ul>
+        {
+          traces.map(({ payload: { message }}) => <li>{message}</li> )
+        }
+      </ul>
+      {
+        !!chips.length && (
+          <div>
+            <h2>Suggestions</h2>
+            {chips.map(({ name }) => <button onClick={createChipsCallback(name)}>{name}</button>)}
+          </div>
+        )
+      }
     </div>
   );
 }
