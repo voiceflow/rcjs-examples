@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Hamburger Order React Sample
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). You can run the project using `yarn start
+## Running the Sample
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). You can run the project using `yarn start`
 
 ## Explanation
 
