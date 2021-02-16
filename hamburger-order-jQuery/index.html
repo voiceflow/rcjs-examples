@@ -6,29 +6,38 @@
     </head>
     <body>
         <input id="user-input" type="text" placeholder="Enter your response...">
-        <button id="send" type="button">Send</button>
+        <button id="send" type="button">Start</button>
         <ul id="root"></ul>
 
         <script defer>
+            // Import from the vfrc global
             const { default: RuntimeClient, makeTraceProcessor } = vfrc;
 
+            // Create a RuntimeClient instance to connect to your Voiceflow app
             const chatbot = new RuntimeClient({
-                versionID: 'XXXXXXXXXXXXXXXXXXXXXXX'
+                versionID: '602beb117504b8001c22b6ae'
             });
 
+            // Create state to track if the conversation has ended. This might affect how we render our UI.
             let isEnd = true;
 
+            // When we receive a response from our VF app, then display the messages on the web-page.
             function displayResponse(messages) {
                 $("#root").empty();
                 messages.forEach(text => $("#root").append(`<li>${text}</li>`));
             }
 
+            // The main workhorse function
             async function handleSend() {
+                // Get the user's response to the VF App's dialogue
                 const userInput = $("#user-input").val();
 
+                // Call an Interaction Method to start or advance the conversation based on userInput
                 const context = isEnd ? await chatbot.start() : await chatbot.sendText(userInput);
-                isEnd = context.isEnding();
 
+                // Store the VF app's response and/or display on the UI               
+                isEnd = context.isEnding();
+                $("#send").text(isEnd ? 'Start' : 'Send');
                 displayResponse(context.getResponse().map(trace => trace.payload.message));
             }
 
