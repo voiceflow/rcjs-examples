@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        <script src="./dist/dialog-engine-sdk.js"></script>
+    </head>
+    <body>
+        <input id="user-input" type="text" placeholder="Enter your response...">
+        <button id="send" type="button">Send</button>
+        <ul id="root"></ul>
+
+        <script defer>
+            const { default: RuntimeClient, makeTraceProcessor } = vfrc;
+
+            const chatbot = new RuntimeClient({
+                versionID: '602beb117504b8001c22b6ae'
+            });
+
+            let isEnd = true;
+
+            function displayResponse(messages) {
+                $("#root").empty();
+                messages.forEach(text => $("#root").append(`<li>${text}</li>`));
+            }
+
+            async function handleSend() {
+                const userInput = $("#user-input").val();
+
+                const context = isEnd ? await chatbot.start() : await chatbot.sendText(userInput);
+                isEnd = context.isEnding();
+
+                displayResponse(context.getResponse().map(trace => trace.payload.message));
+            }
+
+            $("#send").on("click", handleSend);
+        </script>
+    </body>
+</html>
