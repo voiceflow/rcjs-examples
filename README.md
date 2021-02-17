@@ -3,7 +3,7 @@ This is a mega-repo where you can find various examples demonstrating the functi
 
 ## Setup
 
-First clone this repo.
+First, clone this repo.
 
 To setup any example, follow the below steps.
 
