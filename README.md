@@ -48,3 +48,11 @@ To setup any example, follow the below steps.
 9. Run `yarn` to install any necessary dependencies.
 
 10. Depending on the project, you can start the project with `node index.js` or `yarn start`. Check the README.md in the individual samples' folders for any instructions specific to that project.
+
+## Contributing
+
+Feel free to contribute any sample you feel would be helpful for the user. Please ensure to do the following:
+
+1. Create a `config.json` file that is loaded into the `RuntimeClient` constructor (if possible).
+2. Create a `.vf` file for that sample.
+3. Write a README.md for the sample explaining any unusual setup, usage, or code in your sample.

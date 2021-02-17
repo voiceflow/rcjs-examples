@@ -4,6 +4,10 @@ This sample demonstrates the Suggestion Chips functionality that is available on
 
 To start the project, use `yarn start`
 
+## Usage
+
+This sample is similar to the "Hamburger Order React" sample. However, you might see a list of buttons displayed below the app's actual response. These are the suggestion chips. You can click these buttons to automatically send the suggested response as your response to the VF app.
+
 ## Explanation
 
 Voiceflow General Projects implement Natural Language Processing (NLP) and Natural Language Functionality (NLU) functionality to enable intelligent detection of user intents. The NLP/NLU modules can perform intent matching, but also return suggested responses to trigger intents that it's expecting next.

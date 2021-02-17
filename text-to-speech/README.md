@@ -4,6 +4,10 @@ This sample demonstrates the text-to-speech (TTS) functionality that is availabl
 
 To start the project, use `yarn start`
 
+## Usage
+
+This sample is similar to the "Hamburger Order React" sample. However, the VF app's responses are displayed as buttons. You can click these buttons to play the audio file that is included with the traces in the repsponse.
+
 ## Explanation
 
 The Runtime Client can request that our servers synthesize the Voiceflow app's response text into a playable audio file. To enable this, simply set the `tts` option in `RuntimeClient` to `true` (see `App.jsx`).

@@ -2,6 +2,10 @@
 
 This sample is meant to show off the `makeTraceProcessor `utility for the Runtime Client. To run this project, finish the setup described by the README in `rcjs-examples`, then call `node index.js`.
 
+## Usage
+
+There is no additional action on your part required aftter starting the project. This script will automatically contact the VF app for you and run the trace processor function on the response.
+
 ## Explanation
 
 ### Setup
