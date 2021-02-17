@@ -1,5 +1,6 @@
 import React from "react";
 import RuntimeClient from "@voiceflow/runtime-client-js";
+import config from "./config.json"
 
 function App() {
   const [isEnd, setIsEnd] = React.useState(true);   // track whether the conversation has ended
@@ -7,9 +8,7 @@ function App() {
   const ref = React.useRef(null);
 
   // Create a `RuntimeClient` instance to connect with your Voiceflow app.
-  const chatbot = React.useMemo(() => new RuntimeClient({
-    versionID: '602beb117504b8001c22b6ae'
-  }), []);
+  const chatbot = React.useMemo(() => new RuntimeClient(config), []);
 
   // Main workhorse logic
   const handleSend = React.useCallback(async () => {
