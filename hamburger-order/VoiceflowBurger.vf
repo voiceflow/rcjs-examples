@@ -1,199 +1,22 @@
 {
   "project": {
-    "_id": "60216d2e3c43f738ddcca218",
-    "name": "First Kitchen",
-    "teamID": "M9YnzxkbKg",
-    "devVersion": "60216d2e3c43f738ddcca219",
+    "_id": "602beb117504b8001c22b6ad",
+    "name": "Voiceflow Burger",
+    "teamID": "bKn511vn9m",
+    "devVersion": "602beb117504b8001c22b6ae",
     "platform": "general",
     "platformData": {
       "invocationName": "template project general"
     },
     "members": [],
     "image": "",
-    "creatorID": 3,
-    "privacy": "private",
-    "prototype": {
-      "nlp": {
-        "type": "LUIS",
-        "appID": "9cbef354-aa81-422c-9e20-1efbd5a7aa62"
-      },
-      "data": {},
-      "trainedModel": {
-        "intents": [
-          {
-            "key": "VF.YES",
-            "name": "VF.YES",
-            "inputs": [
-              {
-                "text": "yes"
-              },
-              {
-                "text": "yea"
-              },
-              {
-                "text": "ok"
-              },
-              {
-                "text": "okay"
-              },
-              {
-                "text": "yup"
-              },
-              {
-                "text": "ya"
-              },
-              {
-                "text": "sure"
-              }
-            ]
-          },
-          {
-            "key": "wkd34mh",
-            "name": "order_burger",
-            "slots": [
-              {
-                "id": "sdh34f9",
-                "dialog": {
-                  "prompt": [
-                    {
-                      "text": "The size is missing, please specify the size.",
-                      "slots": []
-                    }
-                  ],
-                  "confirm": [
-                    {
-                      "text": "",
-                      "slots": []
-                    }
-                  ],
-                  "utterances": [
-                    {
-                      "text": "I would prefer a {{[size].sdh34f9}}",
-                      "slots": [
-                        "sdh34f9"
-                      ]
-                    },
-                    {
-                      "text": "A {{[size].sdh34f9}}  sounds nice, could have that?",
-                      "slots": [
-                        "sdh34f9"
-                      ]
-                    },
-                    {
-                      "text": "I would like a {{[size].sdh34f9}}",
-                      "slots": [
-                        "sdh34f9"
-                      ]
-                    },
-                    {
-                      "text": "{{[size].sdh34f9}}",
-                      "slots": [
-                        "sdh34f9"
-                      ]
-                    }
-                  ],
-                  "confirmEnabled": false
-                },
-                "required": true
-              },
-              {
-                "id": "f7l349j",
-                "dialog": {
-                  "prompt": [
-                    {
-                      "text": "The burger is missing, please specify the burger",
-                      "slots": []
-                    }
-                  ],
-                  "confirm": [
-                    {
-                      "text": "",
-                      "slots": []
-                    }
-                  ],
-                  "utterances": [
-                    {
-                      "text": "I'm feeling a {{[burger].f7l349j}}  today",
-                      "slots": [
-                        "f7l349j"
-                      ]
-                    },
-                    {
-                      "text": "I'd like a {{[burger].f7l349j}}  please",
-                      "slots": [
-                        "f7l349j"
-                      ]
-                    },
-                    {
-                      "text": "A {{[burger].f7l349j}}  please",
-                      "slots": [
-                        "f7l349j"
-                      ]
-                    }
-                  ],
-                  "confirmEnabled": false
-                },
-                "required": true
-              }
-            ],
-            "inputs": [
-              {
-                "text": "I would like a {{[size].sdh34f9}} {{[burger].f7l349j}}",
-                "slots": [
-                  "sdh34f9",
-                  "f7l349j"
-                ]
-              },
-              {
-                "text": "I would like a {{[burger].f7l349j}}",
-                "slots": [
-                  "f7l349j"
-                ]
-              },
-              {
-                "text": "I would like a {{[size].sdh34f9}}",
-                "slots": [
-                  "sdh34f9"
-                ]
-              }
-            ]
-          }
-        ],
-        "slots": [
-          {
-            "key": "sdh34f9",
-            "name": "size",
-            "type": {
-              "value": "Custom"
-            },
-            "color": "#A086C4",
-            "inputs": [
-              "large",
-              "small",
-              "medum"
-            ]
-          },
-          {
-            "key": "f7l349j",
-            "name": "burger",
-            "type": {
-              "value": "Custom"
-            },
-            "color": "#4FA9B3",
-            "inputs": [
-              "cheeseburger",
-              "hamburger"
-            ]
-          }
-        ]
-      },
-      "lastTrainedTime": 1612884685200
-    }
+    "creatorID": 32091,
+    "privacy": "private"
   },
   "version": {
-    "_id": "60216d2e3c43f738ddcca219",
+    "_id": "602beb117504b8001c22b6ae",
     "name": "Initial Version",
-    "projectID": "60216d2e3c43f738ddcca218",
+    "projectID": "602beb117504b8001c22b6ad",
     "variables": [
       "sessions",
       "user_id",
@@ -352,8 +175,8 @@
       "publishing": {},
       "platform": "general"
     },
-    "rootDiagramID": "60216d2e3c43f738ddcca21a",
-    "creatorID": 3,
+    "rootDiagramID": "602beb117504b8001c22b6af",
+    "creatorID": 32091,
     "prototype": {
       "data": {
         "name": "First Kitchen",
@@ -535,7 +358,7 @@
           {
             "storage": {},
             "variables": {},
-            "programID": "60216d2e3c43f738ddcca21a"
+            "programID": "602beb117504b8001c22b6af"
           }
         ]
       },
@@ -543,11 +366,11 @@
     }
   },
   "diagrams": {
-    "60216d2e3c43f738ddcca21a": {
-      "_id": "60216d2e3c43f738ddcca21a",
-      "offsetX": 120.60000000000001,
-      "offsetY": 246.8,
-      "zoom": 80,
+    "602beb117504b8001c22b6af": {
+      "_id": "602beb117504b8001c22b6af",
+      "offsetX": 33.465194987876714,
+      "offsetY": 284.01564044474947,
+      "zoom": 60.592998169041856,
       "nodes": {
         "start00000000000000000000": {
           "nodeID": "start00000000000000000000",
@@ -577,7 +400,7 @@
             "dialogs": [
               {
                 "voice": "default",
-                "content": "Welcome to First Kitchen"
+                "content": "Welcome to Voiceflow Burger"
               }
             ],
             "ports": [
@@ -794,9 +617,9 @@
       "variables": [],
       "children": [],
       "name": "ROOT",
-      "versionID": "60216d2e3c43f738ddcca219",
-      "creatorID": 3,
-      "modified": 1612884682
+      "versionID": "602beb117504b8001c22b6ae",
+      "creatorID": 32091,
+      "modified": 1613491020
     }
   }
 }
