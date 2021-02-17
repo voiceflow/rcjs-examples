@@ -2,8 +2,6 @@ const RuntimeClient = require("@voiceflow/runtime-client-js").default;
 const { makeTraceProcessor } = require("@voiceflow/runtime-client-js");
 const config = require("./config.json")
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // $TODO - Remove this
-
 const printGlobal = (text) => {
     console.log(`GLOBAL: ${text}`);
 };
