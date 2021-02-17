@@ -6,7 +6,7 @@ To start the project, use `yarn start`
 
 ## Explanation
 
-Voiceflow General Projects implement Natural Language Processing (NLP) and Natural Language Functionality (NLU) functionality to enable intelligent detection of user intents. The NLP/NLU modules can perform intent matching, but also return suggested responses to trigger intents that it's expecting next. \
+Voiceflow General Projects implement Natural Language Processing (NLP) and Natural Language Functionality (NLU) functionality to enable intelligent detection of user intents. The NLP/NLU modules can perform intent matching, but also return suggested responses to trigger intents that it's expecting next.
 
 You can use these suggestion strings to implement user interface "chips", which can be clicked by the user to automatically send the suggestion as their response.
 
