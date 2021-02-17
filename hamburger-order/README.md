@@ -1,5 +1,5 @@
 # Hamburger Order
-A command-line interface (CLI) in Node that uses the runtime-client-js to interact with a Voiceflow app named "First Kitchen" for ordering hamburgers.
+A command-line interface (CLI) in Node that uses the runtime-client-js to interact with a Voiceflow app named "Voiceflow Burgers" for ordering hamburgers.
 
 Use `node index.js` to start the application.
 
@@ -13,7 +13,7 @@ An example of usage is shown below:
 $ node index.js
 
 >>> Beginning conversation flow...
-Welcome to First Kitchen
+Welcome to Voiceflow Burgers
 What would you like to order today?
 
 >>> I would like a cheeseburger
@@ -30,7 +30,7 @@ Would you like to order something else?
 >>> yes
 
 >>> The app responded with...
-Welcome to First Kitchen
+Welcome to Voiceflow Burgers
 What would you like to order today?
 
 >>> I would like a hamburger
@@ -81,7 +81,7 @@ This JSON object is used to initialize the `RuntimeClient`. In particular, the `
 
 ### Starting the Conversation
 
-To start a conversation with the First Kitchen app, we use the `.start()` method, then access the app's response or **traces** using `.getResponse()`
+To start a conversation with the Voiceflow Burgers app, we use the `.start()` method, then access the app's response or **traces** using `.getResponse()`
 
 Shown below, we've defined a `startInteraction()` function in `chatbot.js`, which invokes `.start()` to begin a new conversation session with the app, then passes the response into our frontend, the `displayTraces()` function. 
 
@@ -111,7 +111,7 @@ This code is what produces the initial output shown below
 
 ```bash
 >>> Beginning conversation flow...
-Welcome to First Kitchen
+Welcome to Voiceflow Burgers
 What would you like to order today?
 
 >>>
