@@ -12,7 +12,7 @@ To setup any example, follow the below steps.
 2. Find the `.vf` file in `/sample`, e.g, the `hello-world` folder has a `hello-world.vf` file. This file contains a ready-made Voiceflow project which will be integrated with the JavaScript code.
 
 2. Upload the `.vf` file to [Voiceflow](https://creator.voiceflow.com) to import the project. See 
-[here](https://docs.voiceflow.com/#/platform/project-creation/project-creation?id=project-creation) and click the "Import a .vf file" tab for instructions how to do this.
+[here](https://docs.voiceflow.com/#/platform/project-creation/project-creation?id=project-creation) and click the "Import a .vf file" tab for instructions on how to do this.
 
 3. Open the imported project on Voiceflow
 
