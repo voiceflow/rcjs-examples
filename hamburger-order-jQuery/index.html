@@ -2,7 +2,7 @@
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-        <script src="./dist/dialog-engine-sdk.js"></script>
+        <script src="./dist/vf-runtime-client.js"></script>
     </head>
     <body>
         <input id="user-input" type="text" placeholder="Enter your response...">
@@ -11,12 +11,13 @@
 
         <script defer>
             // Import from the vfrc global
-            const { default: RuntimeClient, makeTraceProcessor } = vfrc;
+            const { default: RuntimeClientFactory, makeTraceProcessor } = vfrc;
 
             // Create a RuntimeClient instance to connect to your Voiceflow app
-            const chatbot = new RuntimeClient({
-                versionID: 'XXXXXXXXXXXXXXXXXXXXX'
+            const factory = new RuntimeClientFactory({
+                versionID: 'XXXXXXXXXXXXXXXXXX'
             });
+            const chatbot = factory.createClient();
 
             // Create state to track if the conversation has ended. This might affect how we render our UI.
             let isEnd = true;

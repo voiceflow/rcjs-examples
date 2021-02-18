@@ -1,4 +1,4 @@
-const RuntimeClient = require("@voiceflow/runtime-client-js").default;
+const RuntimeClientFactory = require("@voiceflow/runtime-client-js").default;
 const { makeTraceProcessor } = require("@voiceflow/runtime-client-js");
 const config = require("./config.json")
 
@@ -25,13 +25,14 @@ const localTraceProcessor = makeTraceProcessor({
 });
 
 // Construct a new Voiceflow app instance
-const app = new RuntimeClient({
+const rcfactory = new RuntimeClientFactory({
     ...config,
     dataConfig: {
         includeTypes: ['speak', 'debug', 'block', 'flow'],
         traceProcessor: globalTraceProcessor
     }
 });
+const app = rcfactory.createClient();
 
 (async () => {
     // Start the conversation session and get the initial app response

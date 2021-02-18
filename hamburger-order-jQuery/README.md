@@ -2,7 +2,7 @@
 
 ## Running the Sample
 
-Unlike the other projects, you need to add the `VERSION_ID` directly into the initializer object of the `RuntimeClient` constructor in `index.html`
+Unlike the other projects, you need to add the `VERSION_ID` directly into the initializer object of the `RuntimeClientFactory` constructor in `index.html`
 
 To run this project, simply open `index.html` with your browser of choice.
 
@@ -14,7 +14,7 @@ When you open `index.html`, you will see a mostly empty webpage with a single in
 
 When the button says "Start", you can click it to begin a conversation session. You are allowed to type any user input before you hit Start, but that input will be ignored for the initial interaction. 
 
-The input value will be sent to the chatbot (the `RuntimeClient` instance), which in turn, makes a request to a Voiceflow runtime server. When a response is received, each trace will be displayed as a list item, as shown below:
+The input value will be sent to the chatbot (the `RuntimeClient` instance created by the `RuntimeClientFactory`), which in turn, makes a request to a Voiceflow runtime server. When a response is received, each trace will be displayed as a list item, as shown below:
 
 <img width="308" alt="Screen Shot 2021-02-17 at 9 58 53 AM" src="https://user-images.githubusercontent.com/32404412/108235150-926f0a00-7113-11eb-883a-642e2edd4d4a.png">
 
