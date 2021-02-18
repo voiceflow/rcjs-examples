@@ -9,22 +9,23 @@ There is no additional action on your part required aftter starting the project.
 ## Explanation
 
 ### Setup
-First, the `RuntimeClient` is set-up so that the `.getResponse()` method of a `Context` returns only speak-type traces by default. The `makeTraceProcessor` utility is only really useful if you've enabled other trace types besides "speak." To return other trace types from `.getResponse()`, we must enable this by passing in an array of trace types into `includeTypes`. Here we enable debug, block, and flow traces.
+First, the `RuntimeClientFactory` is configured so that the `.getResponse()` method of a `Context` returns only speak-type traces by default. The `makeTraceProcessor` utility is only really useful if you've enabled other trace types besides "speak." To return other trace types from `.getResponse()`, we must enable this by passing in an array of trace types into `includeTypes`. Here we enable debug, block, and flow traces.
 
 We also pass in a `globalTraceProcessor`, which is a "trace processor" function. We'll explain what it does and how to create one shortly.
 
 ```js
-const app = new RuntimeClient({
+const rcfactory = new RuntimeClientFactory({
     ...config,
     dataConfig: {
-        includeTypes: ['debug', 'block', 'flow'],
+        includeTypes: ['speak', 'debug', 'block', 'flow'],
         traceProcessor: globalTraceProcessor
     }
 });
+const app = rcfactory.createClient();
 ```
 
 ### Global Trace Processor
-To create the `globalTraceProcessor`, we invoke the `makeTraceProcessor` utility and pass in a handler map. The hadler map is an object whose keys are the names of trace types and whose values are handlers for that trace type. 
+To create the `globalTraceProcessor`, we invoke the `makeTraceProcessor` utility and pass in a handler map. The handler map is an object whose keys are the names of trace types and whose values are handlers for that trace type. 
 
 The utility will return a function that accept a `GeneralTrace`, determine the trace type, and then invoke the handler you defined for that type. For a complete description of all of the trace types and handler signatures, see the API reference.
 
@@ -39,7 +40,7 @@ const globalTraceProcessor = makeTraceProcessor({
 });
 ```
 
-Since we passed `globalTraceProcessor` into the `RuntimeClient` constructor earlier, this makes it so that the `globalTraceProcessor` is **automatically** called every time you invoke an interaction method, like `.start()` or `.sendText()`. 
+Since we passed `globalTraceProcessor` into the `RuntimeClientFactory` constructor earlier, this makes it so that the `globalTraceProcessor` is **automatically** called every time you invoke an interaction method, like `.start()` or `.sendText()` on a `RuntimeClient` instance.
 
 Hence, every time an interaction method is being called, you can imagine a `.forEach()` call is made afterwards, as shown below:
 ```js

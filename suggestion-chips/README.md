@@ -10,7 +10,7 @@ This sample is similar to the "Hamburger Order React" sample. However, you might
 
 ## Explanation
 
-Voiceflow General Projects implement Natural Language Processing (NLP) and Natural Language Functionality (NLU) functionality to enable intelligent detection of user intents. The NLP/NLU modules can perform intent matching, but also return suggested responses to trigger intents that it's expecting next.
+Voiceflow General Projects implement Natural Language Processing (NLP) and Natural Language Functionality (NLU) functionality to enable intelligent detection of user intents. The NLP/NLU modules can not only perform intent matching, but also return suggested responses for the user to trigger any specific intents that it's expecting in the next response.
 
 You can use these suggestion strings to implement user interface "chips", which can be clicked by the user to automatically send the suggestion as their response.
 

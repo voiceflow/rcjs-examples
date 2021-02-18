@@ -11,8 +11,7 @@ To setup any example, follow the below steps.
 
 2. Find the `.vf` file in `/sample`, e.g, the `hello-world` folder has a `hello-world.vf` file. This file contains a ready-made Voiceflow project which will be integrated with the JavaScript code.
 
-2. Upload the `.vf` file to [Voiceflow](https://creator.voiceflow.com) to import the project. See 
-[here](https://docs.voiceflow.com/#/platform/project-creation/project-creation?id=project-creation) and click the "Import a .vf file" tab for instructions on how to do this.
+2. Upload the `.vf` file to [Voiceflow](https://creator.voiceflow.com) to import the project. See [here](https://docs.voiceflow.com/#/platform/project-creation/project-creation?id=project-creation) and click the "Import a .vf file" tab for instructions on how to do this.
 
 3. Open the imported project on Voiceflow
 
@@ -38,6 +37,7 @@ To setup any example, follow the below steps.
     <img width="823" alt="Screen Shot 2021-02-09 at 10 44 56 AM" src="https://user-images.githubusercontent.com/32404412/107388450-dd5da180-6ac3-11eb-8cba-78ff4b5b9f23.png" style="zoom:50%" >
 </p>
 
+
 7. In each sample folder, there is a `config.json` template provided. Paste the `VERSION_ID` you copied earlier into the `"versionID"` attribute to finish integrating the Voiceflow app to the sample.
 ```js
 {
@@ -53,6 +53,6 @@ To setup any example, follow the below steps.
 
 Feel free to contribute any sample you feel would be helpful for the user. Please ensure to do the following:
 
-1. Create a `config.json` file that is loaded into the `RuntimeClient` constructor (if possible).
+1. Create a `config.json` file that is loaded into the `RuntimeClientFactory` constructor (if possible).
 2. Create a `.vf` file for that sample.
 3. Write a README.md for the sample explaining any unusual setup, usage, or code in your sample.
