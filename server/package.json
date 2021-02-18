@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@voiceflow/runtime-client-js": "^1.7.2",
+    "express": "^4.17.1"
+  }
+}
