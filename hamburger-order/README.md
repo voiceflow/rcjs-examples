@@ -5,7 +5,7 @@ Use `node index.js` to start the application.
 
 ## Usage
 
-After starting the CLI with `node index.js`, the CLI will begin a conversation with the Voiceflow app whose `versionID` was provided to the `RuntimeClient` constructor. When the `>>>` prompt appears, you can enter text to advance the conversation session. 
+After starting the CLI with `node index.js`, the CLI will begin a conversation with the Voiceflow app whose `versionID` was provided to the `RuntimeClientFactory` constructor. When the `>>>` prompt appears, you can enter text to advance the conversation session. 
 
 When the CLI asks you "What would you like to order today?", you can respond with any phrase similar to the following:
 
@@ -68,14 +68,15 @@ $
 
 ### Initializing the Application
 
-In `chatbot.js`, we instantiate a `RuntimeClient`, which you can think of as an instance of our Voiceflow Burgers VF app. We pass in a `config` object in to the constructor containing our settings for the app. 
+In `chatbot.js`, we instantiate a `RuntimeClientFactory`, and in turn, we call `.createClient()` to create a `RuntimeClient` instance called `app`. You can think of `app` as an instance of our Voiceflow Burgers VF app. We pass in a `config` object in to `RuntimeClientFactory` to configure the `RuntimeClient` instances.
 
 ```js
-const RuntimeClient = require("@voiceflow/runtime-client-js").default;
+const RuntimeClientFactory = require("@voiceflow/runtime-client-js").default;
 const { displayTraces } = require("./frontend");
 const config = require("./config.json");
 
-const app = new RuntimeClient(config);
+const factory = new RuntimeClientFactory(config);
+const app = factory.createClient();
 ```
 
 We import the `config` object from a `./config.json` file with the below shape:
@@ -86,7 +87,7 @@ We import the `config` object from a `./config.json` file with the below shape:
 }
 ```
 
-The `versionID` is a unique identifier for a project you've built on Voiceflow, so passing this value into the `RuntimeClient` lets the SDK know which specific Voiceflow app you want to start a conversation with.
+The `versionID` is a unique identifier for a project you've built on Voiceflow, so passing this value into the `RuntimeClientFactory` lets the SDK know which specific Voiceflow app you want the `RuntimeClient`s to start a conversation with.
 
 ### Starting the Conversation
 
