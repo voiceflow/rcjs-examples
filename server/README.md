@@ -2,7 +2,7 @@
 
 This sample demonstrates how to use `runtime-client-js` on the backend and invoking the interaction methods in a request handler.
 
-To start the project, use `yarn start`
+To start the project, use `node index.js`
 
 ## Usage
 
