@@ -1,5 +1,5 @@
 import React from "react";
-import RuntimeClient from "@voiceflow/runtime-client-js";
+import RuntimeClientFactory from "@voiceflow/runtime-client-js";
 import config from "./config.json"
 
 function App() {
@@ -8,7 +8,10 @@ function App() {
   const ref = React.useRef(null);
 
   // Create a `RuntimeClient` instance to connect with your Voiceflow app.
-  const chatbot = React.useMemo(() => new RuntimeClient(config), []);
+  const chatbot = React.useMemo(() => {
+    const factory = new RuntimeClientFactory(config);
+    return factory.createClient();
+  }, []);
 
   // Main workhorse logic
   const handleSend = React.useCallback(async () => {

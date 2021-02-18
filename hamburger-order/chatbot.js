@@ -1,8 +1,9 @@
-const RuntimeClient = require("@voiceflow/runtime-client-js").default;
+const RuntimeClientFactory = require("@voiceflow/runtime-client-js").default;
 const { displayTraces } = require("./frontend");
 const config = require("./config.json");
 
-const app = new RuntimeClient(config);
+const factory = new RuntimeClientFactory(config);
+const app = factory.createClient();
 
 const startInteraction = async () => {
     const context = await app.start();

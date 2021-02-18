@@ -1,8 +1,9 @@
-const RuntimeClient = require("@voiceflow/runtime-client-js").default;
+const RuntimeClientFactory = require("@voiceflow/runtime-client-js").default;
 const config = require("./config.json");
 
 // Construct a new Voiceflow app instance
-const app = new RuntimeClient(config);
+const factory = new RuntimeClientFactory(config);
+const app = factory.createClient();
 
 (async () => {
     // Start the conversation session and get the initial app response

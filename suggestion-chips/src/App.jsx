@@ -1,9 +1,12 @@
 import React from 'react';
-import RuntimeClient from "@voiceflow/runtime-client-js";
+import RuntimeClientFactory from "@voiceflow/runtime-client-js";
 import config from "./config.json"
 
 function App() {
-  const chatbot = React.useMemo(() => new RuntimeClient(config), []);
+  const chatbot = React.useMemo(() => {
+    const factory = new RuntimeClientFactory(config);
+    return factory.createClient();
+  }, []);
 
   const [isConvoOver, setConvoOver] = React.useState(true);
   const [traces, setTraces] = React.useState([]);
