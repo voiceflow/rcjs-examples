@@ -15,7 +15,8 @@
 
             // Create a RuntimeClient instance to connect to your Voiceflow app
             const factory = new RuntimeClientFactory({
-                versionID: 'XXXXXXXXXXXXXXXXXX'
+                versionID: 'XXXXXXXXXXXXXXXXXX',
+                apiKey: 'VF.XXXXXXXX.XXXXXXXX'
             });
             const chatbot = factory.createClient();
 

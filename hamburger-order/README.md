@@ -84,10 +84,11 @@ We import the `config` object from a `./config.json` file with the below shape:
 ```json
 {
     "versionID": "6022adee3c078f001c878cae",
+    "apiKey": "VF.XXXXXXXX.XXXXXXXX"
 }
 ```
 
-The `versionID` is a unique identifier for a project you've built on Voiceflow, so passing this value into the `RuntimeClientFactory` lets the SDK know which specific Voiceflow app you want the `RuntimeClient`s to start a conversation with.
+The `versionID` is a unique identifier for a project you've built on Voiceflow, so passing this value into the `RuntimeClientFactory` lets the SDK know which specific Voiceflow app you want the `RuntimeClient`s to start a conversation with. The `API key` is generated for your workspace in Voiceflow and is required to communicate with the Voiceflow app.
 
 ### Starting the Conversation
 
