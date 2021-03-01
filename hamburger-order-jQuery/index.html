@@ -11,35 +11,43 @@
 
         <script defer>
             // Import from the vfrc global
-            const { default: RuntimeClientFactory, makeTraceProcessor } = vfrc;
+            const { default: RuntimeClientFactory, TraceType, TraceEvent } = vfrc;
 
             // Create a RuntimeClient instance to connect to your Voiceflow app
             const factory = new RuntimeClientFactory({
-                versionID: 'XXXXXXXXXXXXXXXXXX'
+                versionID: 'XXXX',
+                apiKey: 'VF.XXXX.XXXX',
             });
             const chatbot = factory.createClient();
 
             // Create state to track if the conversation has ended. This might affect how we render our UI.
             let isEnd = true;
 
-            // When we receive a response from our VF app, then display the messages on the web-page.
-            function displayResponse(messages) {
-                $("#root").empty();
-                messages.forEach(text => $("#root").append(`<li>${text}</li>`));
-            }
+            // Handler runs when a data is received from Runtime servers
+            chatbot.on(TraceEvent.BEFORE_PROCESSING, (context) => {
+                // Update our UI state
+                isEnd = context.isEnding()
 
-            // The main workhorse function
+                // Clear the user interface when the response arrives
+                $("#root").empty();
+
+                // Change the button depending on if the conversation started or stopped
+                $("#send").text(isEnd ? 'Start' : 'Send');
+            });
+
+            // Handler runs when we iterate over a Speak Trace in the chatbot's response
+            chatbot.on(TraceType.SPEAK, (trace) => {
+                // Add the new response to the chat window
+                $("#root").append(`<li>${trace.payload.message}</li>`)
+            });
+
+            // Click handler - This advanced the conversation session
             async function handleSend() {
                 // Get the user's response to the VF App's dialogue
                 const userInput = $("#user-input").val();
 
-                // Call an Interaction Method to start the conversation or advance the conversation based on userInput
+                // Call an Interaction Method to start the conversation or advance the conversation based on `userInput`
                 const context = isEnd ? await chatbot.start() : await chatbot.sendText(userInput);
-
-                // Store the VF app's response and/or display on the UI               
-                isEnd = context.isEnding();
-                $("#send").text(isEnd ? 'Start' : 'Send');
-                displayResponse(context.getResponse().map(trace => trace.payload.message));
             }
 
             $("#send").on("click", handleSend);
