@@ -46,8 +46,8 @@
                 // Get the user's response to the VF App's dialogue
                 const userInput = $("#user-input").val();
 
-                // Call an Interaction Method to start the conversation or advance the conversation based on `userInput`
-                const context = isEnd ? await chatbot.start() : await chatbot.sendText(userInput);
+                // Call an Interaction Method to advance the conversation based on `userInput`.
+                await chatbot.sendText(userInput);
             }
 
             $("#send").on("click", handleSend);

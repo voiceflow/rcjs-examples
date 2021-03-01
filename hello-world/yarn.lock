@@ -71,31 +71,6 @@
   dependencies:
     "@types/node" "*"
 
-"@voiceflow/api-sdk@1.22.0":
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/@voiceflow/api-sdk/-/api-sdk-1.22.0.tgz#363396a2bd37ee541a498fb065d3fd5ffdc3fa85"
-  integrity sha512-1UxcX01Gp3T03EpBNHRnDKRKyziBZQnr6hK7YyKQKJ7TuWLukKeT2j4dWgKave7fcjQdm70CNG7RAOz83Ax/gA==
-  dependencies:
-    "@types/atob" "^2.1.2"
-    "@voiceflow/logger" "^1.1.10"
-    atob "^2.1.2"
-    axios "^0.19.2"
-    core-js "^3.6.5"
-    io-ts "^2.2.8"
-    regenerator-runtime "^0.13.5"
-    superstruct "^0.10.12"
-
-"@voiceflow/api-sdk@1.27.0":
-  version "1.27.0"
-  resolved "https://registry.yarnpkg.com/@voiceflow/api-sdk/-/api-sdk-1.27.0.tgz#d128a3e6c39406e4087dc16eee00bc448e9e610a"
-  integrity sha512-kAYOEhA1zdHRHWz9onPC4g/ikAUiUaR/VFw12LFR+WzxXniwQ/J4qpcaJqCj9x+AEQ9AeC2QvEGICVu4JOaeXw==
-  dependencies:
-    "@types/atob" "^2.1.2"
-    "@voiceflow/logger" "^1.4.2"
-    atob "^2.1.2"
-    axios "^0.21.1"
-    superstruct "^0.10.12"
-
 "@voiceflow/api-sdk@1.27.1":
   version "1.27.1"
   resolved "https://registry.yarnpkg.com/@voiceflow/api-sdk/-/api-sdk-1.27.1.tgz#61ae6e1e8e91c8655a4823b8b02c64d321238900"
@@ -112,21 +87,14 @@
   resolved "https://registry.yarnpkg.com/@voiceflow/common/-/common-6.5.0.tgz#68659641bf7e868b4594a640d63072f573b62f1e"
   integrity sha512-6czuZhUs3dGT/5IWI2ejTf/y69BmzG3/PCS0o1YoE0wxGxXPpfBUdelK9ZKCVgk6s89WnuDKYLKmgNWpln2dkw==
 
-"@voiceflow/general-types@1.24.0":
-  version "1.24.0"
-  resolved "https://registry.yarnpkg.com/@voiceflow/general-types/-/general-types-1.24.0.tgz#83a32b620e5c46bb5406d2e49f097561f1b0ca41"
-  integrity sha512-nis6jFTppbTygZpL5RaaEgpv9crsAkDWeAI3FaatBv5XI0qKcsQSsTYllowyV8aOwEgedhqB8DPBsPQGDeOGBw==
-  dependencies:
-    "@voiceflow/api-sdk" "1.22.0"
-
-"@voiceflow/general-types@^1.29.0":
+"@voiceflow/general-types@1.31.3", "@voiceflow/general-types@^1.29.0":
   version "1.31.3"
   resolved "https://registry.yarnpkg.com/@voiceflow/general-types/-/general-types-1.31.3.tgz#1242efdcb72648ec7b9ac124d7e8c1164110f235"
   integrity sha512-88X7wtYxncHHtWOCHO4JtUsCB7gr2xkE6IpLKSnWBWbo8ADZU4zv1Vnpj6JkSeoFqHuoh5VNXDcgvlgFtuSaUg==
   dependencies:
     "@voiceflow/api-sdk" "1.27.1"
 
-"@voiceflow/logger@^1.1.10", "@voiceflow/logger@^1.4.2", "@voiceflow/logger@^1.5.2":
+"@voiceflow/logger@^1.5.2":
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@voiceflow/logger/-/logger-1.5.2.tgz#da55a612f5ffaf17ec976f713b202b2f68a78bec"
   integrity sha512-zp+yArdfUBrGSFf6Sw4T8q9apB3KWLNjt5tjGFimSna2lNJL0JV40hJAaPmb6YL4FVOzj8N0+ZL15uO7mUZGEA==
@@ -170,10 +138,10 @@
     quick-format-unescaped "^4.0.1"
     sonic-boom "^1.0.2"
 
-"@voiceflow/runtime-client-js@^1.6.0":
-  version "1.13.1"
-  resolved "https://registry.yarnpkg.com/@voiceflow/runtime-client-js/-/runtime-client-js-1.13.1.tgz#56599e55b896c068d37de30eb27756807e3d6011"
-  integrity sha512-jUjboq0bhFeP/6NJsBbOeny2eEZYftjWBSaRECMcODkSZSbTk6SIZjN7B6I+mIhRi0vd7UQkfYQjFTwf7Md0pQ==
+"@voiceflow/runtime-client-js@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@voiceflow/runtime-client-js/-/runtime-client-js-1.14.0.tgz#c2d68599f47e44330cd5243127c3425dfb266574"
+  integrity sha512-I9J8YIbf1qMjICv8fnvEvzvp+Xu77J+o9xJMa9Ysq0XVPOrvmHbJSIJy8SyzTt4Pf8MDUkMS0SVBbFubVvm+lQ==
   dependencies:
     "@types/lodash" "^4.14.168"
     "@voiceflow/general-types" "^1.29.0"
@@ -185,14 +153,14 @@
     lodash "^4.17.20"
 
 "@voiceflow/runtime@^1.20.1":
-  version "1.24.1"
-  resolved "https://registry.yarnpkg.com/@voiceflow/runtime/-/runtime-1.24.1.tgz#579d3bfce6f91e18390a7dff268a8d43c6c1ffbe"
-  integrity sha512-FzDhiWqPnN1vEvoT6ge2BM4/F2pEoH+RKMxmqN/wUQITGxSw3g1/6zipSVPsgDfCYO4fz5CQm2g8vIdXENsBPA==
+  version "1.24.2"
+  resolved "https://registry.yarnpkg.com/@voiceflow/runtime/-/runtime-1.24.2.tgz#67068f73c8cf4b78fc21249094a95e291fc20136"
+  integrity sha512-eK5NDRTv7E322IqJiBXbu0ObQvxtRfOOBU7PQIPKlir+xO4KKf1YScTblCcn7mBLj5VhvtFslGDt25l75iKc/w==
   dependencies:
     "@types/safe-json-stringify" "^1.1.0"
-    "@voiceflow/api-sdk" "1.27.0"
+    "@voiceflow/api-sdk" "1.27.1"
     "@voiceflow/common" "6.5.0"
-    "@voiceflow/general-types" "1.24.0"
+    "@voiceflow/general-types" "1.31.3"
     axios "^0.19.0"
     bluebird "^3.7.2"
     form-data "^3.0.0"
@@ -304,7 +272,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
-axios@^0.19.0, axios@^0.19.2:
+axios@^0.19.0:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
@@ -421,11 +389,6 @@ concat-stream@^1.6.2:
     inherits "^2.0.3"
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
-
-core-js@^3.6.5:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.9.1.tgz#cec8de593db8eb2a85ffb0dbdeb312cb6e5460ae"
-  integrity sha512-gSjRvzkxQc1zjM/5paAmL4idJBFzuJoo+jDjF1tStYFMV2ERfD02HhahhCGXUyHxQRG4yFKVSdO6g62eoRMcDg==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -704,11 +667,6 @@ inherits@^2.0.3, inherits@~2.0.3:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
-
-io-ts@^2.2.8:
-  version "2.2.15"
-  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.15.tgz#0b0b19a6f8a64f4a524ad5810d56432789428128"
-  integrity sha512-ww2ZPrErx5pjCCI/tWRwjlEIDEndnN9kBIxAylXj+WNIH4ZVgaUqFuabGouehkRuvrmvzO5OnZmLf+o50h4izQ==
 
 is-core-module@^2.2.0:
   version "2.2.0"
@@ -1023,11 +981,6 @@ readable-stream@^3.0.0, readable-stream@^3.6.0:
     inherits "^2.0.3"
     string_decoder "^1.1.1"
     util-deprecate "^1.0.1"
-
-regenerator-runtime@^0.13.5:
-  version "0.13.7"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
-  integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
 
 request-progress@^2.0.1:
   version "2.0.1"

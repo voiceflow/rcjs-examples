@@ -2075,10 +2075,10 @@
     quick-format-unescaped "^4.0.1"
     sonic-boom "^1.0.2"
 
-"@voiceflow/runtime-client-js@^1.13.1":
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/@voiceflow/runtime-client-js/-/runtime-client-js-1.13.2.tgz#8cbae1a275f92041afd6227155a8ea396d27f685"
-  integrity sha512-dZlc9tDmePjsWCrw8UClv4bkX5ICm8wtoww6gmpsLh57rrAlhtAgiMhjZ5M87Ug1i9pSCeD6evnOZCwDjNET5w==
+"@voiceflow/runtime-client-js@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@voiceflow/runtime-client-js/-/runtime-client-js-1.14.0.tgz#c2d68599f47e44330cd5243127c3425dfb266574"
+  integrity sha512-I9J8YIbf1qMjICv8fnvEvzvp+Xu77J+o9xJMa9Ysq0XVPOrvmHbJSIJy8SyzTt4Pf8MDUkMS0SVBbFubVvm+lQ==
   dependencies:
     "@types/lodash" "^4.14.168"
     "@voiceflow/general-types" "^1.29.0"
