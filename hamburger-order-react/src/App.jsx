@@ -1,5 +1,5 @@
 import React from "react";
-import RuntimeClientFactory from "@voiceflow/runtime-client-js";
+import RuntimeClientFactory, { TraceType, TraceEvent } from "@voiceflow/runtime-client-js";
 import config from "./config.json"
 
 function App() {
@@ -10,7 +10,18 @@ function App() {
   // Create a `RuntimeClient` instance to connect with your Voiceflow app.
   const chatbot = React.useMemo(() => {
     const factory = new RuntimeClientFactory(config);
-    return factory.createClient();
+    const chatbot = factory.createClient();
+
+    chatbot.on(TraceEvent.BEFORE_PROCESSING, (context) => {
+      setIsEnd(context.isEnding());
+      setTraces([]);
+    });
+
+    chatbot.on(TraceType.SPEAK, (trace) => {
+      setTraces(prevTraces => [...prevTraces, trace]);
+    });
+
+    return chatbot;
   }, []);
 
   // Main workhorse logic
@@ -19,11 +30,7 @@ function App() {
     const userInput = ref.current.value;
 
     // Call an Interaction method to start a conversation or advance a conversation based on user input.
-    const context = isEnd ? await chatbot.start() : await chatbot.sendText(userInput);
-  
-    // Store the results of the interaction and then add the data in your JSX to render the response.
-    setTraces(context.getResponse());
-    setIsEnd(context.isEnding());
+    isEnd ? await chatbot.start() : await chatbot.sendText(userInput);
   }, [chatbot, isEnd])
 
   return (
