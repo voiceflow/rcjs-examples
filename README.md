@@ -16,19 +16,19 @@ To setup any example, follow the below steps.
 4. In the browser address bar of the workspace you uploaded the `.vf` file to, you should see a URL of the form `https://creator.voiceflow.com/workspace/WORKSPACE_ID`. Append `/api-keys` to the end of this and you will be taken to a screen where you can create an API key for the workspace. Click on `Create New API Key`, give it a name, and save it somewhere as you will need it for later.
 
 <p align="center">
-	<img width="552"  alt="Image of the Test Button on Voiceflow" src="https://user-images.githubusercontent.com/32006038/109540734-e2918900-7a90-11eb-84d6-99cd613d81cc.png">
+	<img width="552" alt="Image of the Create New API Key Button on Voiceflow" src="https://user-images.githubusercontent.com/32006038/109540734-e2918900-7a90-11eb-84d6-99cd613d81cc.png">
 </p>
 
 5. Open the imported project on Voiceflow
 
 <p align="center">
-	<img width="552"  alt="Image of the Test Button on Voiceflow" src="https://user-images.githubusercontent.com/32404412/107429772-4cea8580-6af2-11eb-87bd-a30f171b0ae3.png">
+	<img width="552" alt="Image of the Open Project Button on Voiceflow" src="https://user-images.githubusercontent.com/32404412/107429772-4cea8580-6af2-11eb-87bd-a30f171b0ae3.png">
 </p>	
 
 6. Open the Test view by clicking the "Test" button on the top-right. Clicking "Test" will also trigger the project to be uploaded to our servers as an executable program.
 
 <p align="center">
-	<img width="552"  alt="Image of the Test Button on Voiceflow" src="https://user-images.githubusercontent.com/32404412/107269101-17bd3500-6a17-11eb-86b1-b0a817022aca.png">
+	<img width="552" alt="Image of the Test Button on Voiceflow" src="https://user-images.githubusercontent.com/32404412/107269101-17bd3500-6a17-11eb-86b1-b0a817022aca.png">
 </p>	
 
 7. In the Test View, click "Train Assistant" on the Test view sidebar to train the assistant's NLU/NLP capabilities. **Note**: this is unnecessary for some of the samples, so if you cannot click "Train Assistant" then this means training is not required and you are free to skip this step.
@@ -40,7 +40,7 @@ To setup any example, follow the below steps.
 8. Now, on your browser address bar, you should see a URL of the form `https://creator.voiceflow.com/project/VERSION_ID/canvas/OTHER_ID`. Copy the `VERSION_ID` part of this URL. 
 
 <p align="center">
-    <img width="823" alt="Screen Shot 2021-02-09 at 10 44 56 AM" src="https://user-images.githubusercontent.com/32404412/107388450-dd5da180-6ac3-11eb-8cba-78ff4b5b9f23.png" style="zoom:50%" >
+    <img width="823" alt="Image of the project URL for Voiceflow" src="https://user-images.githubusercontent.com/32404412/107388450-dd5da180-6ac3-11eb-8cba-78ff4b5b9f23.png" style="zoom:50%" >
 </p>
 
 
