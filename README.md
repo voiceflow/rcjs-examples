@@ -13,7 +13,11 @@ To setup any example, follow the below steps.
 
 3. Upload the `.vf` file to [Voiceflow](https://creator.voiceflow.com) to import the project. See [here](https://docs.voiceflow.com/#/platform/project-creation/project-creation?id=project-creation) and click the "Import a .vf file" tab for instructions on how to do this.
 
-4. Click on the `Manage API Keys` button and generate an API key for your workspace. You will need this API key for later.
+4. In the browser address bar of the workspace you uploaded the `.vf` file to, you should see a URL of the form `https://creator.voiceflow.com/workspace/WORKSPACE_ID`. Append `/api-keys` to the end of this and you will be taken to a screen where you can create an API key for the workspace. Click on `Create New API Key`, give it a name, and save it somewhere as you will need it for later.
+
+<p align="center">
+	<img width="552"  alt="Image of the Test Button on Voiceflow" src="https://user-images.githubusercontent.com/32006038/109540734-e2918900-7a90-11eb-84d6-99cd613d81cc.png">
+</p>
 
 5. Open the imported project on Voiceflow
 
@@ -44,7 +48,7 @@ To setup any example, follow the below steps.
 ```js
 {
     "versionID": "6022adee3c078f001c878cae", // replace this with your VERSION_ID
-    "apiKey": "VF.xxxxxxxx.xxxxxxxx"        // replace this with your VERSION_ID
+    "apiKey": "VF.xxxxxxxx.xxxxxxxx"         // replace this with your API key
 }
 ```
 
