@@ -7,31 +7,30 @@ function App() {
   const [traces, setTraces] = React.useState([]);   // stores the current response from the VF app
   const ref = React.useRef(null);
 
-  // Create a `RuntimeClient` instance to connect with your Voiceflow app.
   const chatbot = React.useMemo(() => {
+    // Constructing a `RuntimeClient` instance named `chatbot`
     const factory = new RuntimeClientFactory(config);
     const chatbot = factory.createClient();
 
+    // Handler runs before we start processing traces received from the Runtime server response
     chatbot.on(TraceEvent.BEFORE_PROCESSING, (context) => {
       setIsEnd(context.isEnding());
       setTraces([]);
     });
 
-    chatbot.on(TraceType.SPEAK, (trace) => {
-      setTraces(prevTraces => [...prevTraces, trace]);
-    });
+    // Handler runs when the Runtime Client receives a SpeakTrace in the Runtime server response
+    chatbot.on(TraceType.SPEAK, (trace) => setTraces(prevTraces => [...prevTraces, trace]));
 
     return chatbot;
   }, []);
 
-  // Main workhorse logic
   const handleSend = React.useCallback(async () => {
     // Get the user's response to the VF app's dialogue
     const userInput = ref.current.value;
 
-    // Call an Interaction method to start a conversation or advance a conversation based on user input.
-    isEnd ? await chatbot.start() : await chatbot.sendText(userInput);
-  }, [chatbot, isEnd])
+    // Call an Interaction Method to advance the conversation based on `userInput`.
+    await chatbot.sendText(userInput);
+  }, [chatbot])
 
   return (
     <>
