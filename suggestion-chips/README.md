@@ -6,7 +6,7 @@ To start the project, use `yarn start`
 
 ## Usage
 
-This sample is similar to the "Hamburger Order React" sample. However, you might see a list of buttons displayed below the app's actual response. These are the suggestion chips. You can click these buttons to automatically send the suggested response as your response to the VF app.
+This sample is similar to the "Hamburger Order React" sample. However, you might see a list of buttons displayed below the app's actual response. These buttons are the suggestion chips. You can click these buttons to automatically send the suggested response as your response to the VF app.
 
 ## Explanation
 

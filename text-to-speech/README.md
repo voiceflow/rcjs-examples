@@ -6,7 +6,7 @@ To start the project, use `yarn start`
 
 ## Usage
 
-This sample is similar to the "Hamburger Order React" sample. However, the VF app's responses are displayed as buttons. You can click these buttons to play the audio file that is included with the traces in the repsponse.
+This sample is similar to the "Hamburger Order React" sample. However, the VF app's responses are displayed as buttons. You can click these buttons to play the audio file that is included with the traces in the response.
 
 ## Explanation
 
@@ -24,7 +24,64 @@ const chatbot = React.useMemo(() => {
 }, []);
 ```
 
-We define a quick-and-dirty and audio player function called `createOnPlayAudio` which accepts an `audioSrc`, where `audioSrc` is a filepath to some audio file. This function creates a `onClick` handler, which we will use to play the audio files returned by the Runtime Client.
+When `tts` is enabled to be true, the `SpeakTrace`s returned by the `RuntimeClient` will contain an additional `src` property, which is the URL of the TTS audio-file. You can access the `src` property through `trace.payload.src`, as shown below:
+
+```ts
+// METHOD 1 - Awaiting context
+const context = await chatbot.sendText("Some user input");
+
+context.getTrace().forEach(trace => {
+  if (trace.type === TraceType.AUDIO) {
+    playAudio(trace.payload.src);
+  }
+});
+
+// METHOD 2 - Events-system
+chatbot.on(TraceType.AUDIO, trace => playAudio(trace.payload.src));
+```
+
+
+
+### Asynchronous Playback
+
+If you played with the sample, you'll notice that we play each response's audio one at a time, with enough time for the audio to finish. We are not playing a single audio-file, but in fact, coordinating several smaller audio-files to play in sequence. The `RuntimeClient`'s **event-system** makes this easy to setup. 
+
+Whenever you call an interaction method of `RuntimeClient` and the client receives a list of traces (representing the response from our servers) then the event-system iterates through the list and fires `TraceType.XYZ` event whenever it encounters an `XYZTrace`. A useful property of this system, is that a trace is processed, only if all previous traces were processed.
+
+You can exploit the **ordering** of `TraceType` events by defining an `async` handler that sleeps for however long the audio-file is. The next trace will not processed until the `async` handler of the current trace awakens. This gives sufficient time for the current audio-file to finish.
+
+```js
+    chatbot.on(TraceType.SPEAK, async (trace) => {
+      // Add the current trace to the list of responses
+      setTraces(prevTraces => [...prevTraces, trace])
+
+      // Extract the audio file URL
+      const { src } = trace.payload;
+
+      // Play the TTS audio
+      const audio = new Audio(src);
+      audio.play();
+
+      // Wait until the HTMLAudioElement loads the audio-file's length - This is a browser-specific quirk
+      await new Promise(res => audio.onloadedmetadata = () => res() );
+
+      // Now wait until the audio has finished
+      await new Promise(res => setTimeout(res, audio.duration * 1000));
+      
+      // When the last Promise resolves, the async handler will return and we move onto the next
+      // trace to play its audio-file.
+    }, [])
+```
+
+
+
+### Audio Buttons
+
+In this sample, we display the response text not as text nodes, but as buttons. 
+
+To implement click handlers for the buttons, we need to create a **handler factory** which accepts an audio-file and creates a click handler which will play that audio-file. We can pass the handlers constructed by the callback factory into each of the UI buttons.
+
+We define `createOnPlayAudio` to be our handler factory and it accepts an `audioSrc`, where `audioSrc` is a filepath to some audio file. This function returns a click event handler.
 
 ```js
   const createOnPlayAudio = React.useCallback((audioSrc) => {
@@ -35,9 +92,9 @@ We define a quick-and-dirty and audio player function called `createOnPlayAudio`
   }, [])
 ```
 
-We hook this callback up to some buttons in React. If you aren't familiar with React, don't worry. Basically, this code creates a number of buttons and binds the handler created by the `createOnPlayAudio` function to the `"click"` event of the `<button>`. Clicking the suggestion buttons will trigger the click handler and play the audio file `src`. 
+The below React code iterates through the `traces` received by the `RuntimeClient`, and for each trace, renders a `<button>` to the webpage. Inside the `<button>`, we've displayed the response text using `{message}`. 
 
-Now, what is `src`? Take a look at the `traces` variable below, which is the return value of `context.getResponse()`. The `.getResponse()` method is currently configured to return speak-type traces, which contain a TTS audio filename. For each speak `trace`, we can access the audio filename through `trace.payload.src`. We pass this filename into `createOnPlayAudio` as `src`.
+Most importantly, we invoke the handler factory to construct a unique click handler for each button. Each button's click handler triggers the correct audio-file that corresponds to the button's text.
 
 ```jsx
         {
@@ -51,3 +108,6 @@ Now, what is `src`? Take a look at the `traces` variable below, which is the ret
           ))
         }
 ```
+
+
+

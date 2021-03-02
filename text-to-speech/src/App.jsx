@@ -20,7 +20,7 @@ function App() {
     chatbot.on(TraceEvent.BEFORE_PROCESSING, context => setConvoOver(context.isEnding()), []);
 
     chatbot.on(TraceType.SPEAK, async (trace) => {
-      // Update the user interface with the new responses
+      // Add the current trace to the list of responses
       setTraces(prevTraces => [...prevTraces, trace])
 
       // Extract the audio file
