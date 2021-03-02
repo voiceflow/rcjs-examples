@@ -19,7 +19,24 @@ function App() {
 
     chatbot.on(TraceEvent.BEFORE_PROCESSING, context => setConvoOver(context.isEnding()), []);
 
-    chatbot.on(TraceType.SPEAK, trace => setTraces(prevTraces => [...prevTraces, trace]), [])
+    chatbot.on(TraceType.SPEAK, async (trace) => {
+      // Update the user interface with the new responses
+      setTraces(prevTraces => [...prevTraces, trace])
+
+      // Extract the audio file
+      const { src } = trace.payload;
+
+      // Play the TTS file
+      const audio = new Audio(src);
+      audio.play();
+
+      // Wait until the HTMLAudioElement loads the audio-file's length - This is important otherwise
+      // audio.duration might end up being `undefined` in the next line.
+      await new Promise(res => audio.onloadedmetadata = () => res() );
+
+      // Now wait until the audio-file has finished playing
+      await new Promise(res => setTimeout(res, audio.duration * 1000));
+    }, [])
 
     return chatbot;
   }, []);
@@ -31,8 +48,10 @@ function App() {
   }, [inputRef]);
 
   const onInteract = React.useCallback(async () => {
+    const userInput = inputRef.current.value ?? '';
     clearUI();
-    await chatbot.sendText(inputRef.current.value ?? '');
+    setTraces([]);
+    await chatbot.sendText(userInput);
   }, [chatbot, inputRef, clearUI]);
 
   const createOnPlayAudio = React.useCallback((audioSrc) => {
