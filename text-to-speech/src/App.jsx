@@ -1,8 +1,12 @@
 import React from 'react';
-import RuntimeClientFactory from "@voiceflow/runtime-client-js";
+import RuntimeClientFactory, { TraceEvent, TraceType } from "@voiceflow/runtime-client-js";
 import config from "./config.json"
 
 function App() {
+  const [isConvoOver, setConvoOver] = React.useState(true);
+  const [traces, setTraces] = React.useState([]);
+  const inputRef = React.useRef(null);
+
   const chatbot = React.useMemo(() => {
     const rcfactory = new RuntimeClientFactory({
       ...config,
@@ -10,16 +14,31 @@ function App() {
         tts: true
       }
     });
-    return rcfactory.createClient();
-  }, []);
 
-  const [isConvoOver, setConvoOver] = React.useState(true);
-  const [traces, setTraces] = React.useState([]);
-  const inputRef = React.useRef(null);
+    const chatbot = rcfactory.createClient();
 
-  const setContext = React.useCallback((context) => {
-    setTraces(context.getResponse());
-    setConvoOver(context.isEnding());
+    chatbot.on(TraceEvent.BEFORE_PROCESSING, context => setConvoOver(context.isEnding()), []);
+
+    chatbot.on(TraceType.SPEAK, async (trace) => {
+      // Add the current trace to the list of responses
+      setTraces(prevTraces => [...prevTraces, trace])
+
+      // Extract the audio file
+      const { src } = trace.payload;
+
+      // Play the TTS file
+      const audio = new Audio(src);
+      audio.play();
+
+      // Wait until the HTMLAudioElement loads the audio-file's length - This is important otherwise
+      // audio.duration might end up being `undefined` in the next line.
+      await new Promise(res => audio.onloadedmetadata = () => res() );
+
+      // Now wait until the audio-file has finished playing
+      await new Promise(res => setTimeout(res, audio.duration * 1000));
+    }, [])
+
+    return chatbot;
   }, []);
 
   const clearUI = React.useCallback(() => {
@@ -29,13 +48,11 @@ function App() {
   }, [inputRef]);
 
   const onInteract = React.useCallback(async () => {
-    const context = isConvoOver 
-      ? await chatbot.start()
-      : await chatbot.sendText(inputRef.current.value ?? '');
-    
-    setContext(context);
+    const userInput = inputRef.current.value ?? '';
     clearUI();
-  }, [chatbot, inputRef, isConvoOver, setContext, clearUI]);
+    setTraces([]);
+    await chatbot.sendText(userInput);
+  }, [chatbot, inputRef, clearUI]);
 
   const createOnPlayAudio = React.useCallback((audioSrc) => {
     return () => {

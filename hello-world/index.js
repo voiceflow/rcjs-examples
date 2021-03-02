@@ -1,29 +1,21 @@
-const RuntimeClientFactory = require("@voiceflow/runtime-client-js").default;
+const { default: RuntimeClientFactory, TraceType } = require("@voiceflow/runtime-client-js");
 const config = require("./config.json");
+
+// Quick and dirty way to overcome certificates check. In production, you should be generating 
+// certificates instead.
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
 // Construct a new Voiceflow app instance
 const factory = new RuntimeClientFactory(config);
 const app = factory.createClient();
 
-(async () => {
-    // Start the conversation session and get the initial app response
-    const response1 = await app.start();
-    const traces1 = response1.getResponse();
+// Add some listeners to process the data in the app response
+app.on(TraceType.SPEAK, (trace) => console.log(trace.payload.message));
 
-    // Output the app's response
-    traces1.forEach(trace => {
-        console.log(trace.payload.message);
-    });
+(async () => {
+    // Start the conversation session and get the initial app response (OPTIONAL).
+    await app.start();
 
     // Feed in some user input and get the app's response
-    const response2 = await app.sendText("Next");
-    const traces2 = response2.getResponse();
-
-    // Output the app's response
-    traces2.forEach(trace => {
-        console.log(trace.payload.message);
-    });
-
-    // After .start() or .sendText(), check if the conversation session has ended or not.
-    console.log(`conversationEnded=${response2.isEnding()}`);
+    await app.sendText("Next");
 })();

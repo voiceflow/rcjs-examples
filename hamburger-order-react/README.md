@@ -32,7 +32,3 @@ General Projects also support Dialog Management. We require that the user provid
 
 If the button text goes back to "Start", then the current conversation session has ended. Pressing "Start" will begin a new conversation session and you can follow these instructions again from the top.
 
-## Explanation
-
-This is a minimal working example that demonstrates how to use the Voiceflow Runtime Client on a React project. 
-

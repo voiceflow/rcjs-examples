@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@voiceflow/runtime-client-js": "^1.6.0"
+    "@voiceflow/runtime-client-js": "^1.14.0"
   }
 }

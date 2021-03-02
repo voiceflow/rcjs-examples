@@ -2,7 +2,7 @@
 
 ## Running the Sample
 
-Unlike the other projects, you need to add the `VERSION_ID` directly into the initializer object of the `RuntimeClientFactory` constructor in `index.html`
+Unlike the other samples, you need to add the `VERSION_ID` and `apiKey` directly into the initializer object of the `RuntimeClientFactory` constructor in `index.html`
 
 To run this project, simply open `index.html` with your browser of choice.
 
@@ -33,7 +33,3 @@ Voiceflow General Projects are powered by an NLP/NLU engine, so instead of sayin
 General Projects also support Dialog Management. We require that the user provides both a value for `{size}` and `{burger}`, and so, the VF app will prompt the user to fill in that missing information. For example, if the size is missing, the user is can respond with something like "large", "a small would be nice", or "I'm feeling a large today"
 
 If the button text goes back to "Start", then the current conversation session has ended. Pressing "Start" will begin a new conversation session and you can follow these instructions again from the top.
-
-## Explanation
-
-This is a minimal working example that demonstrates how to use the Voiceflow Runtime Client using jQuery.
