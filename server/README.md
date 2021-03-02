@@ -36,13 +36,12 @@ app.post("/:userID", async (req, res) => {
 
     // pull the current conversation session of the user from our DB
     const state = await db.read(userID);
-    const firstInteraction = !state;
 
     // if `state` is `undefined` then allocate a new client
     const client = runtimeClientFactory.createClient(state); 
 
     // send the next user request
-    const context = firstInteraction ? await client.start() : await client.sendText(userInput)
+    const context = await client.sendText(userInput)
 
     // check if we need to cleanup the conversation session
     if (context.isEnding()) {
