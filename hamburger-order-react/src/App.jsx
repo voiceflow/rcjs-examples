@@ -3,6 +3,7 @@ import RuntimeClientFactory, { TraceType, TraceEvent } from "@voiceflow/runtime-
 import config from "./config.json"
 
 function App() {
+  // The UI state
   const [isEnd, setIsEnd] = React.useState(true);   // track whether the conversation has ended
   const [traces, setTraces] = React.useState([]);   // stores the current response from the VF app
   const ref = React.useRef(null);
@@ -18,7 +19,7 @@ function App() {
       setTraces([]);
     });
 
-    // Handler runs when the Runtime Client receives a SpeakTrace in the Runtime server response
+    // Handler runs when the Runtime Client iterates over a SpeakTrace in the Runtime server response
     chatbot.on(TraceType.SPEAK, (trace) => setTraces(prevTraces => [...prevTraces, trace]));
 
     return chatbot;
