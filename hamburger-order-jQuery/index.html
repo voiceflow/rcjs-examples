@@ -2,6 +2,8 @@
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+
+        <!-- Script tag to load a local build of runtime-client-js -->
         <script src="./dist/vf-runtime-client.js"></script>
     </head>
     <body>
@@ -10,7 +12,7 @@
         <ul id="root"></ul>
 
         <script defer>
-            // Import from the vfrc global
+            // Import `runtime-client-js` code from the `vfrc` global
             const { default: RuntimeClientFactory, TraceType, TraceEvent } = vfrc;
 
             // Create a RuntimeClient instance to connect to your Voiceflow app
@@ -23,7 +25,7 @@
             // Create state to track if the conversation has ended. This might affect how we render our UI.
             let isEnd = true;
 
-            // Handler runs when a data is received from Runtime servers
+            // Handler runs immediately after data is received from Runtime servers
             chatbot.on(TraceEvent.BEFORE_PROCESSING, (context) => {
                 // Update our UI state
                 isEnd = context.isEnding()
@@ -41,7 +43,7 @@
                 $("#root").append(`<li>${trace.payload.message}</li>`)
             });
 
-            // Click handler - This advanced the conversation session
+            // Click handler - This advances the conversation session
             async function handleSend() {
                 // Get the user's response to the VF App's dialogue
                 const userInput = $("#user-input").val();
@@ -50,6 +52,7 @@
                 await chatbot.sendText(userInput);
             }
 
+            // Register the click handler on a button
             $("#send").on("click", handleSend);
         </script>
     </body>

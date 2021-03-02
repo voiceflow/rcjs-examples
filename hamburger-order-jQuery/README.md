@@ -2,7 +2,7 @@
 
 ## Running the Sample
 
-Unlike the other projects, you need to add the `VERSION_ID` directly into the initializer object of the `RuntimeClientFactory` constructor in `index.html`
+Unlike the other samples, you need to add the `VERSION_ID` and `apiKey` directly into the initializer object of the `RuntimeClientFactory` constructor in `index.html`
 
 To run this project, simply open `index.html` with your browser of choice.
 
