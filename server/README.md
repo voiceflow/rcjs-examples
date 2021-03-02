@@ -6,7 +6,7 @@ To start the project, use `node index.js`
 
 ## Usage
 
-This sample creates a server on `https://localhost:12121`. To communicate with the `RuntimeClient`, you need to make a `POST` request to `/:userID`. The request body should include a `userInput` attribute which contains the user's response.
+This sample creates a server on `https://localhost:12121`. To communicate with the `RuntimeClient`, you need to make a `POST` request to `https://localhost:12121/:userID`. The request body should include a `userInput` attribute which contains the user's response.
 
 ```json
 {
@@ -14,7 +14,9 @@ This sample creates a server on `https://localhost:12121`. To communicate with t
 }
 ```
 
-The server will respond with the traces making up th Voiceflow app's repsonse.
+The server will respond with the traces making up th Voiceflow app's repsonse. 
+
+For your convenience, the project folder includes a `server-sample-requests.postman_collection.json` file, which includes four HTTP requests to the server sample. You can import this JSON into [Postman](https://www.postman.com/downloads/) and quickly make HTTP requests to the server while it is running. 
 
 ## Explanation
 
