@@ -1,46 +1,53 @@
 import React from 'react';
-import RuntimeClientFactory from "@voiceflow/runtime-client-js";
+import RuntimeClientFactory, { TraceEvent, TraceType } from "@voiceflow/runtime-client-js";
 import config from "./config.json"
 
 function App() {
-  const chatbot = React.useMemo(() => {
-    const factory = new RuntimeClientFactory(config);
-    return factory.createClient();
-  }, []);
-
   const [isConvoOver, setConvoOver] = React.useState(true);
   const [traces, setTraces] = React.useState([]);
   const [chips, setChips] = React.useState([]);
   const inputRef = React.useRef(null);
 
-  const setContext = React.useCallback((context) => {
-    setTraces(context.getResponse());
-    setConvoOver(context.isEnding());
-    setChips(context.getChips());
+  // Construct the chatbot
+  const chatbot = React.useMemo(() => {
+    const factory = new RuntimeClientFactory(config);
+    const chatbot = factory.createClient();
+
+    // Handler runs when RuntimeClient receives response from Runtime servers
+    chatbot.on(TraceEvent.BEFORE_PROCESSING, context => {
+      setConvoOver(context.isEnding());
+      setChips(context.getChips());
+    });
+
+    // Handler runs when RuntimeClient is processing a SpeakTrace in the response
+    chatbot.on(TraceType.SPEAK, trace => {
+      setTraces(prevTraces => [...prevTraces, trace]);
+    });
+
+    return chatbot;
   }, []);
 
+  // Used to clear the input field and the previous response bubbles
   const clearUI = React.useCallback(() => {
-    if (inputRef.current) {
-      inputRef.current.value = '';
-    }
+    if (inputRef.current) inputRef.current.value = '';
+    setTraces([]);
   }, [inputRef]);
 
-  const onInteract = React.useCallback(async () => {
-    const context = isConvoOver 
-      ? await chatbot.start()
-      : await chatbot.sendText(inputRef.current.value ?? '');
-    
-    setContext(context);
+  // Main workhorse function that runs all associated logic for sending a request
+  const getResponse = React.useCallback(async (userInput) => {
     clearUI();
-  }, [chatbot, inputRef, isConvoOver, setContext, clearUI]);
+    return chatbot.sendText(userInput);
+  }, [chatbot, clearUI]);
 
+  // Handler for Send/Start button
+  const onInteract = React.useCallback(async () => {
+    await getResponse(inputRef.current.value ?? '');
+  }, [getResponse, inputRef]);
+
+  // Handler for suggestion chip buttons
   const createChipsCallback = React.useCallback((suggestion) => {
-    return async () => {
-      const context = await chatbot.sendText(suggestion);
-      setContext(context);
-      clearUI();
-    };
-  }, [clearUI, chatbot, setContext])
+    return async () => await getResponse(suggestion);
+  }, [getResponse])
 
   return (
     <div>
