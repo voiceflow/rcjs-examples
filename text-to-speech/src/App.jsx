@@ -1,8 +1,12 @@
 import React from 'react';
-import RuntimeClientFactory from "@voiceflow/runtime-client-js";
+import RuntimeClientFactory, { TraceEvent, TraceType } from "@voiceflow/runtime-client-js";
 import config from "./config.json"
 
 function App() {
+  const [isConvoOver, setConvoOver] = React.useState(true);
+  const [traces, setTraces] = React.useState([]);
+  const inputRef = React.useRef(null);
+
   const chatbot = React.useMemo(() => {
     const rcfactory = new RuntimeClientFactory({
       ...config,
@@ -10,16 +14,14 @@ function App() {
         tts: true
       }
     });
-    return rcfactory.createClient();
-  }, []);
 
-  const [isConvoOver, setConvoOver] = React.useState(true);
-  const [traces, setTraces] = React.useState([]);
-  const inputRef = React.useRef(null);
+    const chatbot = rcfactory.createClient();
 
-  const setContext = React.useCallback((context) => {
-    setTraces(context.getResponse());
-    setConvoOver(context.isEnding());
+    chatbot.on(TraceEvent.BEFORE_PROCESSING, context => setConvoOver(context.isEnding()), []);
+
+    chatbot.on(TraceType.SPEAK, trace => setTraces(prevTraces => [...prevTraces, trace]), [])
+
+    return chatbot;
   }, []);
 
   const clearUI = React.useCallback(() => {
@@ -29,13 +31,9 @@ function App() {
   }, [inputRef]);
 
   const onInteract = React.useCallback(async () => {
-    const context = isConvoOver 
-      ? await chatbot.start()
-      : await chatbot.sendText(inputRef.current.value ?? '');
-    
-    setContext(context);
     clearUI();
-  }, [chatbot, inputRef, isConvoOver, setContext, clearUI]);
+    await chatbot.sendText(inputRef.current.value ?? '');
+  }, [chatbot, inputRef, clearUI]);
 
   const createOnPlayAudio = React.useCallback((audioSrc) => {
     return () => {

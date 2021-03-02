@@ -29,7 +29,9 @@ function App() {
 
   // Used to clear the input field and the previous response bubbles
   const clearUI = React.useCallback(() => {
-    if (inputRef.current) inputRef.current.value = '';
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
     setTraces([]);
   }, [inputRef]);
 
