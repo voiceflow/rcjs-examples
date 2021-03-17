@@ -7,8 +7,8 @@
         <script src="./dist/vf-runtime-client.js"></script>
     </head>
     <body>
-        <input id="user-input" type="text" placeholder="Enter your response...">
-        <button id="send" type="button">Start</button>
+        <input id="user-input" type="text" placeholder="Enter your response..."/>
+        <button id="send" type="button">Send</button>
         <ul id="root"></ul>
 
         <script defer>
@@ -22,23 +22,8 @@
             });
             const chatbot = factory.createClient();
 
-            // Create state to track if the conversation has ended. This might affect how we render our UI.
-            let isEnd = true;
-
-            // Handler runs immediately after data is received from Runtime servers
-            chatbot.on(TraceEvent.BEFORE_PROCESSING, (context) => {
-                // Update our UI state
-                isEnd = context.isEnding()
-
-                // Clear the user interface when the response arrives
-                $("#root").empty();
-
-                // Change the button depending on if the conversation started or stopped
-                $("#send").text(isEnd ? 'Start' : 'Send');
-            });
-
             // Handler runs when we iterate over a Speak Trace in the chatbot's response
-            chatbot.on(TraceType.SPEAK, (trace) => {
+            chatbot.onSpeak((trace) => {
                 // Add the new response to the chat window
                 $("#root").append(`<li>${trace.payload.message}</li>`)
             });
@@ -47,10 +32,19 @@
             async function handleSend() {
                 // Get the user's response to the VF App's dialogue
                 const userInput = $("#user-input").val();
+                // clear the input field
+                $("#user-input").val('');
 
                 // Call an Interaction Method to advance the conversation based on `userInput`.
                 await chatbot.sendText(userInput);
+
+                if (chatbot.getContext().isEnding()) {
+                   // do something if it is ending
+                }
             }
+
+            // optionally automatically start the chat
+            // chatbot.start();
 
             // Register the click handler on a button
             $("#send").on("click", handleSend);
