@@ -19,6 +19,16 @@ function App() {
       setTraces([]);
     });
 
+    chatbot.setStopTypes(["custom"]);
+
+    chatbot.onResponse((trace) => {
+      console.log('onresponse trace', trace);
+      if (trace.payload.data.name === 'custom') {
+        console.log("v1 trace", trace);
+        return 1;
+      }
+    })
+
     // Handler runs when the Runtime Client iterates over a SpeakTrace in the Runtime server response
     chatbot.on(TraceType.SPEAK, (trace) => setTraces(prevTraces => [...prevTraces, trace]));
 
