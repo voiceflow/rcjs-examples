@@ -10,7 +10,7 @@ function App() {
 
   const chatbot = React.useMemo(() => {
     // Constructing a `RuntimeClient` instance named `chatbot`
-    const factory = new RuntimeClientFactory(config);
+    const factory = new RuntimeClientFactory({...config, dataConfig: { stopTypes: ["custom"] }});
     const chatbot = factory.createClient();
 
     // Handler runs before we start processing traces received from the Runtime server response
@@ -18,8 +18,6 @@ function App() {
       setIsEnd(context.isEnding());
       setTraces([]);
     });
-
-    chatbot.setStopTypes(["custom"]);
 
     chatbot.onResponse((trace) => {
       console.log('onresponse trace', trace);
