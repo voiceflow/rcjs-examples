@@ -1,4 +1,5 @@
 {
-    "versionID": "XXXX",
-    "apiKey": "VF.XXXX.XXXX"
+    "versionID": "",
+    "apiKey": "",
+    "endpoint": "https://localhost:4000"
 }
