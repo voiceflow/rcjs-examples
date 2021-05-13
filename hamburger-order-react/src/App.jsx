@@ -21,7 +21,7 @@ function App() {
 
     chatbot.onResponse((trace) => {
       console.log('onresponse trace', trace);
-      if (trace.payload.data.name === 'custom') {
+      if (trace.type === 'custom') {
         console.log("v1 trace", trace);
         return 1;
       }
